@@ -1,0 +1,98 @@
+<template>
+  <section class="benefits-section">
+    <div class="benefits-section__container">
+      <div class="benefits-section__header">
+        <h2 id="properties" class="benefits-section__title">
+          Explora nuestras propiedades exclusivas
+        </h2>
+        <p class="benefits-section__description">
+          Las propiedades que buscás, en un solo lugar
+        </p>
+      </div>
+
+      <div class="benefits-section__carousel">
+        <CarouselComponent :filterType="'department'" :activeTab="activeTab" />
+      </div>
+
+      <div class="benefits-section__content">
+        <div class="benefits-section__left">
+          <h3 class="benefits-section__subtitle">
+            Tu propiedad soñada, a solo un click!
+          </h3>
+          <img
+            src="@/assets/images/body-dept.jpeg"
+            alt="Edificio moderno"
+            class="benefits-section__image"
+          />
+        </div>
+
+        <div class="benefits-section__right">
+          <div class="circle-decoration" />
+          <div class="circle-decoration" />
+          <div class="circle-decoration" />
+          <div class="circle-decoration" />
+          <div class="benefits-section__features">
+            <div
+              v-for="feature in features"
+              :key="feature.icon"
+              class="feature"
+            >
+              <div class="feature__icon">
+                <img
+                  :src="`src/assets/images/${feature.icon}`"
+                  :alt="feature.title"
+                />
+              </div>
+              <div class="feature__text">
+                <h4>{{ feature.title }}</h4>
+                <p>{{ feature.description }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="benefits-section__investment">
+      <h3 class="benefits-section__subtitle">Oportunidades de inversión</h3>
+      <p class="benefits-section__description">
+        Explora Nuestra Oferta de Complejos Inmobiliarios
+      </p>
+      <div class="benefits-section__carousel">
+        <CarouselComponent :filterType="'building'" :activeTab="activeTab" />
+      </div>
+    </div>
+  </section>
+</template>
+
+<script setup>
+import CarouselComponent from "@/components/shared/CarouselComponent.vue";
+import { ref } from "vue";
+
+const activeTab = ref("buy");
+
+const features = [
+  {
+    icon: "shield.svg",
+    title: "Seguridad y Tranquilidad",
+    description: "Tu seguridad y la de tu familia",
+  },
+  {
+    icon: "money-pig.svg",
+    title: "Transparencia Total",
+    description: "Procesos claros y transparentes",
+  },
+  {
+    icon: "Handshake.svg",
+    title: "Soporte 24/7",
+    description: "Estamos para ayudarte siempre",
+  },
+  {
+    icon: "Home.svg",
+    title: "Calidad Garantizada",
+    description: "Las mejores propiedades verificadas",
+  },
+];
+</script>
+
+<style scoped src="./BenefitsSection.scss"></style>
