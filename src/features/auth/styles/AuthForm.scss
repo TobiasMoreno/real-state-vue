@@ -1,0 +1,126 @@
+.auth-form {
+  max-width: 400px;
+  margin: auto;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+  &__title {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #333;
+  }
+
+  &__input {
+    padding: 0.75rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 0.6rem;
+    font-size: 1rem;
+    transition: border 0.3s, box-shadow 0.3s;
+
+    &:focus {
+      border-color: #4a90e2;
+      box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+      outline: none;
+    }
+  }
+
+  &__button {
+    padding: 0.75rem;
+    background-color: #4a90e2;
+    color: white;
+    font-size: 1rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 0.6rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #3a78c2;
+    }
+  }
+
+  &__switch {
+    text-align: center;
+    font-size: 0.95rem;
+    color: #555;
+  }
+
+  &__link-button {
+    background: none;
+    border: none;
+    color: #4a90e2;
+    cursor: pointer;
+    font-weight: 500;
+    padding-left: 0.3rem;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #3a78c2;
+    }
+  }
+
+  &__divider {
+    text-align: center;
+    color: #aaa;
+    font-size: 0.9rem;
+    position: relative;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 45%;
+      height: 1px;
+      background: #ddd;
+    }
+
+    &::before {
+      left: 0;
+    }
+
+    &::after {
+      right: 0;
+    }
+  }
+
+  &__google-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.65rem;
+    border: 1px solid #ccc;
+    border-radius: 0.6rem;
+    background-color: white;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s;
+
+    &:hover {
+      background-color: #f5f5f5;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    }
+  }
+
+  &__google-button img {
+    width: 20px;
+    height: 20px;
+  }
+
+  &__error {
+    color: #e74c3c;
+    font-size: 0.9rem;
+    text-align: center;
+    margin-top: 1rem;
+  }
+}
