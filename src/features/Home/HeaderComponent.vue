@@ -12,12 +12,10 @@
         <a class="header__nav-link" href="#home" @click.prevent="navigateTo('home')">Inicio</a>
         <a class="header__nav-link" href="#about" @click.prevent="navigateTo('about')">Nosotros</a>
         <a class="header__nav-link" href="#properties" @click.prevent="navigateTo('properties')">Propiedades</a>
-        <!-- <a v-if="isLogedIn" class="header__nav-link" href="/dashboard/panel"
-          >Dashboard</a
-        > -->
+        <!-- <a v-if="isLogedIn" class="header__nav-link" href="/dashboard/panel">Dashboard</a> -->
       </nav>
 
-      <button class="header__login-btn">
+      <button class="header__login-btn" @click="isLogedIn ? logout() : openLoginModal()">
         {{ isLogedIn ? "Salir" : "Login" }}
       </button>
     </div>
@@ -25,15 +23,29 @@
 
   <div v-if="isMenuOpen" class="overlay" @click="closeMenu"></div>
 
-  <!-- <div v-if="isLoginModalOpen" class="modal-overlay" @click="closeLoginModal">
-    <AuthMock @closeModal="closeLoginModal" />
-  </div> -->
+  <!-- Modal de Login/Register -->
+  <div v-if="isLoginModalOpen" class="modal-overlay" @click.self="closeLoginModal">
+    <LoginView
+      v-if="!isRegistering"
+      @switch="switchToRegister"
+      @success="handleLoginSuccess"
+    />
+    <RegisterView
+      v-else
+      @switch="switchToLogin"
+      @success="handleLoginSuccess"
+    />
+  </div>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted, watch } from "vue";
+import LoginView from "@/features/auth/views/LoginView.vue";
+import RegisterView from "@/features/auth/views/RegisterView.vue";
+
 const isMenuOpen = ref(false);
 const isLoginModalOpen = ref(false);
+const isRegistering = ref(false);
 const isLogedIn = ref(false);
 
 const toggleMenu = () => {
@@ -46,10 +58,19 @@ const closeMenu = () => {
 
 const openLoginModal = () => {
   isLoginModalOpen.value = true;
+  isRegistering.value = false;
 };
 
 const closeLoginModal = () => {
   isLoginModalOpen.value = false;
+};
+
+const switchToRegister = () => {
+  isRegistering.value = true;
+};
+
+const switchToLogin = () => {
+  isRegistering.value = false;
 };
 
 const logout = () => {
@@ -57,7 +78,13 @@ const logout = () => {
   isLogedIn.value = false;
 };
 
-const navigateTo = (anchor) => {
+const handleLoginSuccess = () => {
+  localStorage.setItem("userLogedIn", "true");
+  isLogedIn.value = true;
+  closeLoginModal();
+};
+
+const navigateTo = (anchor: string) => {
   closeMenu();
   const el = document.getElementById(anchor);
   if (el) {

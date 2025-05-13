@@ -47,7 +47,7 @@
 
 <script>
 // Importamos el modelo para validación
-import { Building } from "../../interfaces/buildingModel.ts";
+import { Building } from "@/interfaces/buildingModel.ts";
 
 export default {
   props: {

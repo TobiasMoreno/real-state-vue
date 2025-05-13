@@ -66,7 +66,7 @@
 </template>
 
 <script setup>
-import CarouselComponent from "@/components/shared/CarouselComponent.vue";
+import CarouselComponent from "@/shared/CarouselComponent.vue";
 import { ref } from "vue";
 
 const activeTab = ref("buy");

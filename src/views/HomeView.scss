@@ -32,24 +32,26 @@
     animation: fadeInDown 1s ease-out;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 0 16px;
+    align-items: start;
   }
 
   &__title-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
     margin-bottom: 56px;
+    padding: 0 16px;
+    align-items: start;
   }
 
   &__title {
-    font-size: 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    font-size: 48px;
     font-weight: 600;
     margin-bottom: var(--spacing-sm);
-    text-align: center;
-    max-width: 800px;
+    text-align: left;
+    max-width:600px;
   }
 }
 

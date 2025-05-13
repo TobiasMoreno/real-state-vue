@@ -59,8 +59,8 @@
 </template>
 
 <script setup>
-import { ref, defineEmits } from "vue";
-import AppSelect from "@/components/shared/SelectComponent.vue";
+import { ref } from "vue";
+import AppSelect from "@/shared/SelectComponent.vue";
 
 const emit = defineEmits(["tabChange"]);
 

@@ -1,13 +1,15 @@
 <template>
   <section class="hero">
     <HeaderComponent />
-    <div class="hero__content">
-      <div class="hero__title-container">
-        <h2 class="hero__title">
-          Tu Hogar Ideal: Encuentra la Propiedad de tus Sueños con Nosotros
-        </h2>
+    <div>
+      <div class="hero__content">
+        <div class="hero__title-container">
+          <h2 class="hero__title">
+            Encuentra la Propiedad de tus Sueños con Nosotros
+          </h2>
+        </div>
+        <SearchBarComponent @tab-change="setActiveTab" />
       </div>
-      <SearchBarComponent @tab-change="setActiveTab" />
     </div>
   </section>
   <BenefitsSectionComponent :active-tab="activeTab" />
@@ -15,10 +17,10 @@
 </template>
 
 <script setup>
-import BenefitsSectionComponent from "@/components/Home/BenefitsSectionComponent.vue";
-import FooterComponent from "@/components/Home/FooterComponent.vue";
-import HeaderComponent from "@/components/Home/HeaderComponent.vue";
-import SearchBarComponent from "@/components/Home/SearchBarComponent.vue";
+import BenefitsSectionComponent from "@/features/Home/BenefitsSectionComponent.vue";
+import FooterComponent from "@/features/Home/FooterComponent.vue";
+import HeaderComponent from "@/features/Home/HeaderComponent.vue";
+import SearchBarComponent from "@/features/Home/SearchBarComponent.vue";
 import { ref } from "vue";
 
 const activeTab = ref("rent");

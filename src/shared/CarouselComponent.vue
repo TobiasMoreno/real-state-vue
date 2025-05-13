@@ -22,7 +22,7 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount, computed, watchEffect } from "vue";
 import CardComponent from "./CardComponent.vue";
-import mockData from '../../assets/mock.json';
+import mockData from "@/assets/mock.json";
 
 const props = defineProps({
   filterType: {
@@ -134,5 +134,5 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped lang="scss">
-@use "../shared/Carousel.scss";
+@use "./Carousel.scss";
 </style>
