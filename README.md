@@ -57,6 +57,8 @@ Accede a la demo del proyecto: [Inmobiliaria Logo Demo](https://inmobiliaria-log
    npm install ngx-echarts echarts
    npm install -D sass-embedded
    npm install vue-router
+   npm install pinia axios firebase
+   npm i vite-plugin-image-optimizer
    ```
 
 3. **Iniciar el servidor de desarrollo**
@@ -67,7 +69,7 @@ Accede a la demo del proyecto: [Inmobiliaria Logo Demo](https://inmobiliaria-log
 
 4. **Acceder a la aplicación**
    ```
-   http://localhost:5173
+   http://localhost:5174
    ```
 
 ## 📋 Estructura del Proyecto
@@ -91,8 +93,8 @@ src/
 │   ├── HomeView.vue
 │   └── DashboardView.vue
 ├── router/
-│   └── index.js
-├── main.js
+│   └── index.ts
+├── main.ts
 └── App.vue
 
 
