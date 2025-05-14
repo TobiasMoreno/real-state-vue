@@ -11,7 +11,9 @@
       </div>
 
       <div class="benefits-section__carousel">
-        <CarouselComponent :filterType="'department'" :activeTab="activeTab" />
+        <div v-if="loading" class="loading-spinner">Cargando propiedades...</div>
+        <div v-else-if="!buildings.length" class="no-results">No se encontraron propiedades con estos criterios</div>
+        <CarouselComponent v-else :buildings="buildings" :filterType="'department'" :activeTab="activeTab" />
       </div>
 
       <div class="benefits-section__content">
@@ -59,7 +61,9 @@
         Explora Nuestra Oferta de Complejos Inmobiliarios
       </p>
       <div class="benefits-section__carousel">
-        <CarouselComponent :filterType="'building'" :activeTab="activeTab" />
+        <div v-if="loading" class="loading-spinner">Cargando propiedades...</div>
+        <div v-else-if="!buildings.length" class="no-results">No se encontraron propiedades con estos criterios</div>
+        <CarouselComponent v-else :buildings="buildings" :filterType="'building'" :activeTab="activeTab" />
       </div>
     </div>
   </section>
@@ -67,9 +71,22 @@
 
 <script setup>
 import CarouselComponent from "@/shared/CarouselComponent.vue";
-import { ref } from "vue";
+import { defineProps } from "vue";
 
-const activeTab = ref("buy");
+defineProps({
+  activeTab: {
+    type: String,
+    default: "rent"
+  },
+  buildings: {
+    type: Array,
+    default: () => []
+  },
+  loading: {
+    type: Boolean,
+    default: false
+  }
+});
 
 const features = [
   {
