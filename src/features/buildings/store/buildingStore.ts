@@ -15,19 +15,25 @@ export const useBuildingStore = defineStore("building", {
       keyword?: string;
       typeName?: string;
       ambientes?: string;
-      priceRange?: string;
+      minPrice?: number;
+      maxPrice?: number;
     }) {
       this.isLoading = true;
       this.error = null;
       try {
-        const { data } = await api.post<Building[]>(
-          "/buildings/filter",
-          filters
+        const clean = Object.fromEntries(
+          Object.entries(filters).filter(
+            ([_, v]) => v !== undefined && v !== ""
+          )
         );
+        console.log("Filtros enviados:", clean);
+
+        const { data } = await api.post<Building[]>("/buildings/filter", clean);
         this.buildings = data;
-      } catch (err) {
+      } catch (err: any) {
         this.error = "Error filtering buildings";
         console.error(err);
+        console.error("Detalle del error:", err.response?.data);
       } finally {
         this.isLoading = false;
       }

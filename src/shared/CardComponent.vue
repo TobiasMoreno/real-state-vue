@@ -39,18 +39,15 @@
   </section>
 </template>
 
-<script>
-import { Building } from "@/interfaces/buildingModel.ts";
+<script lang="ts">
+import type { Building } from "@/features/buildings/type/building.ts";
 
 export default {
   props: {
     building: {
-      type: Object,
-      required: true,
-      validator(value) {
-        return Object.keys(Building).every((key) => key in value);
-      },
-    },
+      type: Object as () => Building,
+      required: true
+    }
   },
   computed: {
     formattedPrice() {

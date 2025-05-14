@@ -12,11 +12,11 @@
         <a class="header__nav-link" href="#home" @click.prevent="navigateTo('home')">Inicio</a>
         <a class="header__nav-link" href="#about" @click.prevent="navigateTo('about')">Nosotros</a>
         <a class="header__nav-link" href="#properties" @click.prevent="navigateTo('properties')">Propiedades</a>
-        <!-- <a v-if="isLogedIn" class="header__nav-link" href="/dashboard/panel">Dashboard</a> -->
+        <a v-if="isLogedIn" class="header__nav-link" href="/dashboard/panel">Dashboard</a>
       </nav>
 
       <button class="header__login-btn" @click="isLogedIn ? logout() : openLoginModal()">
-        {{ isLogedIn ? "Salir" : "Login" }}
+        {{ isLogedIn ? "Salir" : "Iniciar sesión" }}
       </button>
     </div>
   </header>
