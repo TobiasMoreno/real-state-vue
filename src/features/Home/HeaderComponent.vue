@@ -23,7 +23,6 @@
 
   <div v-if="isMenuOpen" class="overlay" @click="closeMenu"></div>
 
-  <!-- Modal de Login/Register -->
   <div v-if="isLoginModalOpen" class="modal-overlay" @click.self="closeLoginModal">
     <LoginView
       v-if="!isRegistering"

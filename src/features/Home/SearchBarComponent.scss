@@ -31,7 +31,7 @@
       &:after {
         content: "";
         position: absolute;
-        bottom: 4px;
+        bottom: 2px;
         left: 0;
         width: 100%;
         height: 4px;
@@ -128,9 +128,13 @@
     gap: var(--spacing-md);
 
     &__tabs {
-      width: 100%;
-      justify-content: center;
-      margin-right: 0;
+      width: 50%;
+      margin: 0 auto;
+    }
+
+    &__tab{
+      width: 90%;
+      margin: 0 auto;
     }
 
     &__bar {
@@ -143,15 +147,6 @@
       gap: var(--spacing-md);
     }
 
-    &__input {
-      width: 100%;
-      min-width: unset;
-    }
-
-    &__filter-btn {
-      width: 100%;
-      justify-content: center;
-    }
 
     &__submit {
       width: 100%;
@@ -162,30 +157,12 @@
 
 @media (max-width: 480px) {
   .search {
-    padding: 0 var(--spacing-sm);
+    box-shadow: none;
 
-    &__tabs {
-      padding: var(--spacing-xs) var(--spacing-sm);
-      gap: var(--spacing-sm);
-    }
-
-    &__tab {
-      padding: var(--spacing-xs) var(--spacing-sm);
-      font-size: 13px;
-    }
-
-    &__input {
-      padding: var(--spacing-sm) var(--spacing-sm);
-      font-size: 13px;
-    }
-
-    &__filter-btn {
-      padding: var(--spacing-sm) var(--spacing-sm);
-      font-size: 13px;
-    }
-
-    &__submit {
-      padding: var(--spacing-md);
+    &__tabs{
+      width: 90%;
+      margin: 0 auto;
     }
   }
+
 }
