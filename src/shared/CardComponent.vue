@@ -60,10 +60,10 @@ export default {
     },
     icons() {
       return {
-        bed: "src/assets/images/bed.svg",
-        bath: "src/assets/images/bathroom.svg",
-        size: "src/assets/images/building-size.svg",
-        floor: "src/assets/images/floor.svg",
+        bed: "https://res.cloudinary.com/dzzqhjmlf/image/upload/v1747313380/bed_wq4fu7.svg",
+        bath: "https://res.cloudinary.com/dzzqhjmlf/image/upload/v1747313437/bathroom_m8znpq.svg",
+        size: "https://res.cloudinary.com/dzzqhjmlf/image/upload/v1747313446/building-size_auzbbi.svg",
+        floor: "https://res.cloudinary.com/dzzqhjmlf/image/upload/v1747313465/floor_uhtgth.svg",
       };
     },
   },

@@ -83,7 +83,7 @@
 
     .circle-decoration {
       position: absolute;
-      background-image: url("src/assets/images/Group 1935.svg");
+      background-image: url("https://res.cloudinary.com/dzzqhjmlf/image/upload/v1747313189/Group_1935_o0q2ll.svg");
       background-size: contain;
 
       // Primer círculo - grande arriba a la derecha
@@ -193,7 +193,7 @@
   height: 200px;
   font-size: 1.2rem;
   color: var(--color-primary);
-  
+
   &::before {
     content: "";
     width: 20px;

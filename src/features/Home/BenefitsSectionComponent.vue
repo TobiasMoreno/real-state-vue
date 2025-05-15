@@ -21,11 +21,7 @@
           <h3 class="benefits-section__subtitle">
             Tu propiedad soñada, a solo un click!
           </h3>
-          <img
-            src="@/assets/images/body-dept.jpeg"
-            alt="Edificio moderno"
-            class="benefits-section__image"
-          />
+          <img src="@/assets/images/body-dept.jpeg" alt="Edificio moderno" class="benefits-section__image" />
         </div>
 
         <div class="benefits-section__right">
@@ -34,16 +30,9 @@
           <div class="circle-decoration" />
           <div class="circle-decoration" />
           <div class="benefits-section__features">
-            <div
-              v-for="feature in features"
-              :key="feature.icon"
-              class="feature"
-            >
+            <div v-for="feature in features" :key="feature.icon" class="feature">
               <div class="feature__icon">
-                <img
-                  :src="`src/assets/images/${feature.icon}`"
-                  :alt="feature.title"
-                />
+                <img :src="feature.icon" :alt="feature.title" />
               </div>
               <div class="feature__text">
                 <h4>{{ feature.title }}</h4>
@@ -90,22 +79,22 @@ defineProps({
 
 const features = [
   {
-    icon: "shield.svg",
+    icon: "https://res.cloudinary.com/dzzqhjmlf/image/upload/v1747313318/shield_plzhnk.svg",
     title: "Seguridad y Tranquilidad",
     description: "Tu seguridad y la de tu familia",
   },
   {
-    icon: "money-pig.svg",
+    icon: "https://res.cloudinary.com/dzzqhjmlf/image/upload/v1747313025/money-pig_y6tjj4.svg",
     title: "Transparencia Total",
     description: "Procesos claros y transparentes",
   },
   {
-    icon: "Handshake.svg",
+    icon: "https://res.cloudinary.com/dzzqhjmlf/image/upload/v1747313127/Handshake_q0okpj.svg",
     title: "Soporte 24/7",
     description: "Estamos para ayudarte siempre",
   },
   {
-    icon: "Home.svg",
+    icon: "https://res.cloudinary.com/dzzqhjmlf/image/upload/v1747313144/Home_lj0tgs.svg",
     title: "Calidad Garantizada",
     description: "Las mejores propiedades verificadas",
   },
