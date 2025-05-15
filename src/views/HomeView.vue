@@ -17,12 +17,12 @@
 </template>
 
 <script setup>
-import BenefitsSectionComponent from "@/features/Home/BenefitsSectionComponent.vue";
-import FooterComponent from "@/features/Home/FooterComponent.vue";
-import HeaderComponent from "@/features/Home/HeaderComponent.vue";
-import SearchBarComponent from "@/features/Home/SearchBarComponent.vue";
 import { ref, onMounted, computed } from "vue";
 import { useBuildingStore } from "@/features/buildings/store/buildingStore";
+import BenefitsSectionComponent from "@/features/Home/Benefits/BenefitsSectionComponent.vue";
+import FooterComponent from "@/features/Home/footer/FooterComponent.vue";
+import SearchBarComponent from "@/features/Home/search-bar/SearchBarComponent.vue";
+import HeaderComponent from "@/features/Home/header/HeaderComponent.vue";
 
 const buildingStore = useBuildingStore();
 const activeTab = ref("rent");

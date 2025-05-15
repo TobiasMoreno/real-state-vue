@@ -70,10 +70,9 @@
     }
   }
 
-  &__logo {
-    font-size: 24px;
-    font-weight: 900;
-    color: var(--color-white);
+  &__logo-img {
+    width: 80px;
+    height: 80px;
   }
 
   &__social {

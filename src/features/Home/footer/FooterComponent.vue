@@ -3,7 +3,8 @@
     <div class="footer__container">
       <div class="footer__content">
         <div class="footer__section">
-          <h2 class="footer__logo" id="about">LOGO</h2>
+          <img src="https://res.cloudinary.com/dzzqhjmlf/image/upload/v1747320410/logo-dark_aoaq01.png" alt="logo"
+            class="footer__logo-img">
         </div>
 
         <div class="footer__section">

@@ -2,7 +2,6 @@
   box-shadow: var(--shadow-sm);
   max-width: var(--container-max-width);
   border-radius: var(--border-radius-md);
-  padding: 0 var(--spacing-lg);
   display: flex;
 
   &__tabs {
@@ -48,7 +47,6 @@
   &__bar {
     display: flex;
     align-items: center;
-    gap: var(--spacing-md);
     flex-wrap: wrap;
     flex: 1;
   }

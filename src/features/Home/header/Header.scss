@@ -63,6 +63,10 @@
         background: rgba(255, 255, 255, 0.1);
       }
     }
+    &__logo-img{
+      width: 80px;
+      height: 80px;
+    }
   }
   
   .overlay {
@@ -147,6 +151,9 @@
         font-size: 13px;
         margin-left: auto;
       }
+      &__logo-img{
+        display: none;
+      }
     }
   }
   
@@ -169,6 +176,9 @@
       &__login-btn {
         padding: 6px 16px;
         font-size: 12px;
+      }
+      &__logo-img{
+        display: none;
       }
     }
   }

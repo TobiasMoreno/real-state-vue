@@ -5,7 +5,8 @@
         <button class="header__menu-btn" @click.stop="toggleMenu">
           <i class="fas fa-bars"></i>
         </button>
-        <h1 class="header__title">LOGO</h1>
+        <img src="https://res.cloudinary.com/dzzqhjmlf/image/upload/v1747320410/logo-dark_aoaq01.png" alt="logo"
+          class="header__logo-img">
       </div>
 
       <nav class="header__nav" :class="{ 'header__nav--open': isMenuOpen }" @click.stop>
@@ -24,16 +25,8 @@
   <div v-if="isMenuOpen" class="overlay" @click="closeMenu"></div>
 
   <div v-if="isLoginModalOpen" class="modal-overlay" @click.self="closeLoginModal">
-    <LoginView
-      v-if="!isRegistering"
-      @switch="switchToRegister"
-      @success="handleLoginSuccess"
-    />
-    <RegisterView
-      v-else
-      @switch="switchToLogin"
-      @success="handleLoginSuccess"
-    />
+    <LoginView v-if="!isRegistering" @switch="switchToRegister" @success="handleLoginSuccess" />
+    <RegisterView v-else @switch="switchToLogin" @success="handleLoginSuccess" />
   </div>
 </template>
 
