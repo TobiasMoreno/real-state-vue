@@ -71,4 +71,4 @@ export default {
 </script>
 
 
-<style scoped src="./CardComponent.scss" />
+<style scoped src="./card-component.scss" />

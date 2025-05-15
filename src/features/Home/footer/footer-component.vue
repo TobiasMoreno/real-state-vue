@@ -80,4 +80,4 @@ function scrollToAnchor(anchor) {
 }
 </script>
 
-<style scoped src="./Footer.scss"></style>
+<style scoped src="./footer.scss"></style>

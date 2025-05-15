@@ -59,6 +59,7 @@ Accede a la demo del proyecto: [Inmobiliaria Logo Demo](https://inmobiliaria-log
    npm install vue-router
    npm install pinia axios firebase
    npm i vite-plugin-image-optimizer
+   npm install ngx-echarts echarts
    ```
 
 3. **Iniciar el servidor de desarrollo**

@@ -12,9 +12,9 @@
 </template>
 
 <script setup lang="ts">
-import { Teleport, ref, computed } from 'vue';
-import LoginView from '@/features/auth/views/LoginView.vue';
-import RegisterView from '@/features/auth/views/RegisterView.vue'
+import { ref, computed } from 'vue';
+import LoginView from '@/features/auth/views/login-view.vue';
+import RegisterView from '@/features/auth/views/register-view.vue'
 const props = defineProps({
     modelValue: { type: Boolean, default: false }
 });

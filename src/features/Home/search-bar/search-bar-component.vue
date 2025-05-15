@@ -38,7 +38,7 @@
 
 <script lang="ts" setup>
 import { ref } from "vue";
-import AppSelect from "@/shared/SelectComponent.vue";
+import AppSelect from "@/shared/select-component.vue";
 
 const emit = defineEmits<{
   (e: 'tabChange', tab: string): void;
@@ -119,4 +119,4 @@ triggerSearch();
 </script>
 
 
-<style scoped src="./SearchBarComponent.scss"></style>
+<style scoped src="./search-bar.scss"></style>

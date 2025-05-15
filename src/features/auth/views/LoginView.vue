@@ -46,4 +46,4 @@ async function onGoogleLogin() {
 }
 </script>
 
-<style src="../styles/AuthForm.scss" scoped />
+<style src="../styles/auth-form.scss" scoped />

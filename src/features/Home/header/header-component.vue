@@ -93,4 +93,4 @@ onMounted(() => {
 });
 </script>
 
-<style scoped src="./Header.scss"></style>
+<style scoped src="./header.scss"></style>

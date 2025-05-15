@@ -59,7 +59,7 @@
 </template>
 
 <script setup>
-import CarouselComponent from "@/shared/CarouselComponent.vue";
+import CarouselComponent from "@/shared/carousel-component.vue";
 import { defineProps } from "vue";
 
 defineProps({
@@ -101,4 +101,4 @@ const features = [
 ];
 </script>
 
-<style scoped src="./BenefitsSection.scss"></style>
+<style scoped src="./benefits-section.scss"></style>

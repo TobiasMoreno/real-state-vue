@@ -11,8 +11,8 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount, computed, watchEffect } from "vue";
-import CardComponent from "./CardComponent.vue";
+import { ref, computed, watchEffect } from "vue";
+import CardComponent from "./card-component.vue";
 
 const props = defineProps({
   buildings: {
@@ -89,5 +89,5 @@ watchEffect(() => {
 
 
 <style scoped lang="scss">
-@use "./Carousel.scss";
+@use "./carousel.scss";
 </style>

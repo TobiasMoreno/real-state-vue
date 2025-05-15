@@ -19,10 +19,10 @@
 <script setup>
 import { ref, onMounted, computed } from "vue";
 import { useBuildingStore } from "@/features/buildings/store/buildingStore";
-import BenefitsSectionComponent from "@/features/Home/Benefits/BenefitsSectionComponent.vue";
-import FooterComponent from "@/features/Home/footer/FooterComponent.vue";
-import SearchBarComponent from "@/features/Home/search-bar/SearchBarComponent.vue";
-import HeaderComponent from "@/features/Home/header/HeaderComponent.vue";
+import BenefitsSectionComponent from "@/features/Home/Benefits/benefits-section-component.vue";
+import FooterComponent from "@/features/Home/footer/footer-component.vue";
+import SearchBarComponent from "@/features/Home/search-bar/search-bar-component.vue";
+import HeaderComponent from "@/features/Home/header/header-component.vue";
 
 const buildingStore = useBuildingStore();
 const activeTab = ref("rent");
@@ -44,4 +44,4 @@ onMounted(async () => {
 });
 </script>
 
-<style scoped src="./HomeView.scss"></style>
+<style scoped src="./home-view.scss"></style>

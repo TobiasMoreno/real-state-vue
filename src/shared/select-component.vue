@@ -32,4 +32,4 @@ const emitChange = () => {
 const placeholder = `${props.label}`;
 </script>
 
-<style scoped src="./Select.scss"></style>
+<style scoped src="./select.scss"></style>
