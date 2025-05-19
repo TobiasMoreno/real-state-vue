@@ -12,8 +12,7 @@
 
 <script setup>
 import { ref, computed, watchEffect } from "vue";
-import CardComponent from "./card-component.vue";
-
+import CardComponent from "../card/card-component.vue";
 const props = defineProps({
   buildings: {
     type: Array,

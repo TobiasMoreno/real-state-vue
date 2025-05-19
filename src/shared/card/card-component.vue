@@ -40,7 +40,7 @@
 </template>
 
 <script lang="ts">
-import type { Building } from "@/features/buildings/type/building.ts";
+import type { Building } from "@/features/buildings/type/building";
 
 export default {
   props: {
