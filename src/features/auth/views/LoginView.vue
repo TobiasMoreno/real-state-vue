@@ -6,6 +6,7 @@
         <input v-model="password" type="password" placeholder="Contraseña" required minlength="6"
             class="auth-form__input" />
 
+        <p v-if="errorMessage" class="auth-form__error">{{ errorMessage }}</p>
         <button type="submit" class="auth-form__button">Entrar</button>
 
         <div class="auth-form__divider">o</div>
@@ -34,16 +35,47 @@ import { useAuthStore } from '@/features/auth/store/authStore';
 const auth = useAuthStore();
 const email = ref('');
 const password = ref('');
+const errorMessage = ref('');
 
 async function onSubmit() {
-    await auth.login(email.value, password.value);
-    emit('success');
+    errorMessage.value = '';
+
+    if (!email.value || !password.value) {
+        errorMessage.value = 'Completá todos los campos.';
+        return;
+    }
+    if (!isValidEmail(email.value)) {
+        errorMessage.value = 'Ingresá un email válido.';
+        return;
+    }
+
+    if (password.value.length < 6) {
+        errorMessage.value = 'La contraseña debe tener al menos 6 caracteres.';
+        return;
+    }
+
+    try {
+        await auth.login(email.value, password.value);
+        emit('success');
+    } catch (error: any) {
+        errorMessage.value = error.message || 'Error al iniciar sesión.';
+    }
+}
+async function onGoogleLogin() {
+    errorMessage.value = '';
+    try {
+        await auth.loginWithGoogle();
+        emit('success');
+    } catch (error: any) {
+        errorMessage.value = error.message || 'Error con Google.';
+    }
 }
 
-async function onGoogleLogin() {
-    await auth.loginWithGoogle();
-    emit('success');
+function isValidEmail(value: string): boolean {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(value);
 }
+
 </script>
 
 <style src="../styles/auth-form.scss" scoped />

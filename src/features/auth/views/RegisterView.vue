@@ -2,16 +2,11 @@
     <form class="auth-form" @submit.prevent="onSubmit" novalidate>
         <h2 class="auth-form__title">Crear Cuenta</h2>
 
-        <!-- Email Input -->
         <input class="auth-form__input" v-model="email" type="email" placeholder="Email" required />
-        <!-- Password Input -->
         <input class="auth-form__input" v-model="password" type="password" placeholder="Contraseña" required
             minlength="6" />
 
-        <!-- Error message -->
-        <div v-if="errorMessage" class="auth-form__error">
-            {{ errorMessage }}
-        </div>
+        <p v-if="errorMessage" class="auth-form__error">{{ errorMessage }}</p>
 
         <button class="auth-form__button" type="submit">Registrarme</button>
 
@@ -43,23 +38,36 @@ import { useAuthStore } from '@/features/auth/store/authStore';
 const auth = useAuthStore();
 const email = ref('');
 const password = ref('');
-const errorMessage = ref<string | null>(null); // Variable para almacenar el mensaje de error
+const errorMessage = ref<string | null>(null);
 
-// Manejo del registro de usuario
 async function onSubmit() {
-    errorMessage.value = null; // Resetear cualquier mensaje de error antes de intentar el registro
+
+    errorMessage.value = '';
+
+    if (!email.value || !password.value) {
+        errorMessage.value = 'Completá todos los campos.';
+        return;
+    }
+    if (!isValidEmail(email.value)) {
+        errorMessage.value = 'Ingresá un email válido.';
+        return;
+    }
+
+    if (password.value.length < 6) {
+        errorMessage.value = 'La contraseña debe tener al menos 6 caracteres.';
+        return;
+    }
+
     try {
         await auth.register(email.value, password.value);
-        emit('success'); // Emitir evento de éxito si el registro es exitoso
-    } catch (error) {
-        // Manejo de error en caso de fallo
-        errorMessage.value = 'Hubo un problema al crear tu cuenta. Intenta nuevamente.';
+        emit('success');
+    } catch (error: any) {
+        errorMessage.value = error.message || 'Hubo un problema al crear tu cuenta. Intenta nuevamente.';
     }
 }
 
-// Manejo del login con Google
 async function onGoogleLogin() {
-    errorMessage.value = null; // Resetear el mensaje de error antes de intentar el login con Google
+    errorMessage.value = null;
     try {
         await auth.loginWithGoogle();
         emit('success');
@@ -67,6 +75,12 @@ async function onGoogleLogin() {
         errorMessage.value = 'Hubo un problema al iniciar sesión con Google. Intenta nuevamente.';
     }
 }
+
+function isValidEmail(value: string): boolean {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(value);
+}
+
 </script>
 
 <style src="../styles/auth-form.scss" scoped />

@@ -3,11 +3,7 @@ import { defineStore } from "pinia";
 import { api } from "@/plugins/axios";
 import { firebaseAuth, googleProvider } from "@/plugins/firebase";
 import type { UserCredential } from "firebase/auth";
-import {
-  signInWithPopup,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-} from "firebase/auth";
+import { signInWithPopup } from "firebase/auth";
 
 export const useAuthStore = defineStore("auth", {
   state: () => ({
@@ -16,14 +12,24 @@ export const useAuthStore = defineStore("auth", {
   }),
   actions: {
     async login(email: string, password: string) {
-      const { data } = await api.post("/auth/login", { email, password });
-      this.token = data.access_token;
-      this.userEmail = email;
+      try {
+        const { data } = await api.post("/auth/login", { email, password });
+        this.token = data.access_token;
+        this.userEmail = email;
+        localStorage.setItem("token", data.access_token);
+      } catch (error: any) {
+        throw new Error(error.response.data.message);
+      }
     },
     async register(email: string, password: string) {
-      const { data } = await api.post("/auth/register", { email, password });
-      this.token = data.access_token;
-      this.userEmail = email;
+      try {
+        const { data } = await api.post("/auth/register", { email, password });
+        this.token = data.access_token;
+        this.userEmail = email;
+        localStorage.setItem("token", data.access_token);
+      } catch (error: any) {
+        throw new Error(error.response.data.message);
+      }
     },
     async loginWithGoogle() {
       const cred: UserCredential = await signInWithPopup(
@@ -36,10 +42,12 @@ export const useAuthStore = defineStore("auth", {
       });
       this.token = data.access_token;
       this.userEmail = cred.user.email || "";
+      localStorage.setItem("token", data.access_token);
     },
     logout() {
       this.token = "";
       this.userEmail = "";
+      localStorage.removeItem("token");
     },
   },
 });
