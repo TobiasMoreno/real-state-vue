@@ -21,7 +21,8 @@
           <h3 class="benefits-section__subtitle">
             Tu propiedad soñada, a solo un click!
           </h3>
-          <img src="@/assets/images/body-dept.jpeg" alt="Edificio moderno" class="benefits-section__image" />
+          <img src="https://res.cloudinary.com/dzzqhjmlf/image/upload/v1747656912/body-dept_hptnc5.jpg"
+            alt="Edificio moderno" class="benefits-section__image" />
         </div>
 
         <div class="benefits-section__right">

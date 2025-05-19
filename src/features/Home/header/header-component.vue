@@ -13,7 +13,7 @@
         <a class="header__nav-link" href="#home" @click.prevent="navigateTo('home')">Inicio</a>
         <a class="header__nav-link" href="#about" @click.prevent="navigateTo('about')">Nosotros</a>
         <a class="header__nav-link" href="#properties" @click.prevent="navigateTo('properties')">Propiedades</a>
-        <a v-if="isLogedIn" class="header__nav-link" href="/dashboard/panel">Dashboard</a>
+        <a v-if="isLogedIn" class="header__nav-link" href="/dashboard">Dashboard</a>
       </nav>
 
       <button class="header__login-btn" @click="isLogedIn ? logout() : openLoginModal()">
@@ -34,7 +34,9 @@
 import { ref, onMounted, watch } from "vue";
 import LoginView from "@/features/auth/views/LoginView.vue";
 import RegisterView from "@/features/auth/views/RegisterView.vue";
+import { useAuthStore } from "@/features/auth/store/authStore";
 
+const authStore = useAuthStore();
 const isMenuOpen = ref(false);
 const isLoginModalOpen = ref(false);
 const isRegistering = ref(false);
@@ -66,6 +68,7 @@ const switchToLogin = () => {
 };
 
 const logout = () => {
+  authStore.logout();
   localStorage.removeItem("userLogedIn");
   isLogedIn.value = false;
 };
