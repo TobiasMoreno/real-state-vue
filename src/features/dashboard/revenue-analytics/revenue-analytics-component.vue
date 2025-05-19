@@ -19,22 +19,18 @@ import { ref, computed, watch, onMounted, onBeforeUnmount } from 'vue'
 import Chart from 'chart.js/auto'
 import crosshairPlugin from 'chartjs-plugin-crosshair'
 
-// registra de una vez el plugin
 Chart.register(crosshairPlugin)
 
 const chartRef = ref<HTMLCanvasElement | null>(null)
 let chartInstance: Chart | null = null
 
-// estado: Monthly o Yearly
 const viewType = ref<'Monthly' | 'Yearly'>('Monthly')
 
-// datos fijos
 const monthlySales = [20, 100, 50, 120, 80, 140, 60, 130, 70, 160, 90, 110]
 const monthlyRevenue = [50, 140, 70, 180, 100, 230, 130, 250, 120, 280, 160, 220]
 const yearlySales = [0, 45, 10, 75, 35, 94, 30, 115, 30, 105, 65, 110]
 const yearlyRevenue = [0, 100, 40, 110, 60, 140, 55, 130, 65, 180, 75, 115]
 
-// recomputa etiquetas y datasets
 const chartData = computed(() => {
     const labels = viewType.value === 'Yearly'
         ? ['2019', '2020', '2021', '2022', '2023']
@@ -83,7 +79,6 @@ const chartData = computed(() => {
     }
 })
 
-// opciones fijas
 const chartOptions = {
     responsive: true,
     maintainAspectRatio: false,
@@ -131,7 +126,6 @@ const chartOptions = {
     }
 }
 
-// crea el chart al montar
 onMounted(() => {
     if (!chartRef.value) return
     chartInstance = new Chart(chartRef.value.getContext('2d')!, {

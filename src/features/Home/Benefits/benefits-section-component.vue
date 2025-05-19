@@ -60,8 +60,7 @@
 </template>
 
 <script setup>
-import CarouselComponent from "@/shared/carousel-component.vue";
-import { defineProps } from "vue";
+import CarouselComponent from "@/shared/carousel/carousel-component.vue";
 
 defineProps({
   activeTab: {

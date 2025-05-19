@@ -1,7 +1,7 @@
 .layout__content {
   transition: margin-left 0.3s ease;
   margin-left: 0;
-  margin-top: 52px;
+  margin-top: 50px;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -60,8 +60,17 @@
   }
 
   @media (max-width: 768px) {
+    &__recent-transactions-top-properties{
+      display: flex;
+      flex-direction: column;
+    }
     &--shifted {
       margin-left: 0;
+    }
+
+    &__chart-revenue-sales-data {
+      display: flex;
+      flex-direction: column;
     }
   }
 
@@ -87,6 +96,7 @@
     }
   }
 
+
   @media (max-width: 1140px) {
     &__recent-transactions-top-properties {
       grid-template-columns: 1fr 1fr;
@@ -106,4 +116,6 @@
       }
     }
   }
+
+  
 }
