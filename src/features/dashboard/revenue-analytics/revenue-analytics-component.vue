@@ -9,7 +9,7 @@
         </div>
 
         <div class="revenue-analytics__body">
-            <canvas ref="chartRef" class="revenue-analytics__chart"></canvas>
+            <canvas ref="chartRef" class="revenue-analytics__chart" height="360"></canvas>
         </div>
     </div>
 </template>
