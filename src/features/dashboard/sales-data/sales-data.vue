@@ -10,7 +10,7 @@
         </div>
 
         <ul class="sales-data__list">
-            <li v-for="item in sales" :key="item.label" class="sales-data__item">
+            <li v-for="item in salesData" :key="item.label" class="sales-data__item">
                 <div class="sales-data__item-top">
                     <div class="sales-data__label">{{ item.label }}</div>
                     <div class="sales-data__value">{{ item.value }}%</div>
@@ -24,11 +24,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { api } from '@/plugins/axios';
+import { ref, watchEffect } from 'vue'
+import { SaleItem } from './sale-item';
 
-type SaleItem = { label: string; value: number }
-
-// Opciones de periodos
 enum Period {
     Monthly = 'Monthly',
     Weekly = 'Weekly',
@@ -36,39 +35,23 @@ enum Period {
 }
 const periods = Object.values(Period)
 
-// Estado reactivo
 const selectedPeriod = ref<Period>(Period.Monthly)
 
-// Datos de ventas por periodo
-const salesData: Record<Period, SaleItem[]> = {
-    [Period.Monthly]: [
-        { label: 'Via Website', value: 50 },
-        { label: 'Via Team Member', value: 12 },
-        { label: 'Via Agents', value: 6 },
-        { label: 'Via Social Media', value: 15 },
-        { label: 'Via Digital Marketing', value: 12 },
-        { label: 'Via Others', value: 5 }
-    ],
-    [Period.Weekly]: [
-        { label: 'Via Website', value: 60 },
-        { label: 'Via Team Member', value: 10 },
-        { label: 'Via Agents', value: 8 },
-        { label: 'Via Social Media', value: 12 },
-        { label: 'Via Digital Marketing', value: 7 },
-        { label: 'Via Others', value: 3 }
-    ],
-    [Period.Yearly]: [
-        { label: 'Via Website', value: 45 },
-        { label: 'Via Team Member', value: 15 },
-        { label: 'Via Agents', value: 10 },
-        { label: 'Via Social Media', value: 18 },
-        { label: 'Via Digital Marketing', value: 8 },
-        { label: 'Via Others', value: 4 }
-    ]
+const salesData = ref<SaleItem[]>([])
+
+async function loadSalesData(): Promise<SaleItem[]> {
+    try {
+        const response = await api.get<SaleItem[]>(`/sales/${selectedPeriod.value.toLowerCase()}`)
+        return response.data
+    } catch (error) {
+        console.error('Error loading sales data:', error)
+        return []
+    }
 }
 
-// Computed para obtener los datos según periodo seleccionado
-const sales = computed(() => salesData[selectedPeriod.value])
+watchEffect(async () => {
+    salesData.value = await loadSalesData()
+})
 </script>
 
 <style scoped src="./sales-data.scss"></style>

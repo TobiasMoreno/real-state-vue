@@ -18,6 +18,8 @@
 import { ref, computed, watch, onMounted, onBeforeUnmount } from 'vue'
 import Chart from 'chart.js/auto'
 import crosshairPlugin from 'chartjs-plugin-crosshair'
+import { RevenueStats } from './revenue-stats'
+import { api } from '@/plugins/axios'
 
 Chart.register(crosshairPlugin)
 
@@ -25,19 +27,23 @@ const chartRef = ref<HTMLCanvasElement | null>(null)
 let chartInstance: Chart | null = null
 
 const viewType = ref<'Monthly' | 'Yearly'>('Monthly')
+const revenueStats = ref<RevenueStats[]>([])
 
-const monthlySales = [20, 100, 50, 120, 80, 140, 60, 130, 70, 160, 90, 110]
-const monthlyRevenue = [50, 140, 70, 180, 100, 230, 130, 250, 120, 280, 160, 220]
-const yearlySales = [0, 45, 10, 75, 35, 94, 30, 115, 30, 105, 65, 110]
-const yearlyRevenue = [0, 100, 40, 110, 60, 140, 55, 130, 65, 180, 75, 115]
+async function loadRevenueStats() {
+    try {
+        const response = await api.get<RevenueStats[]>(`/revenues`, {
+            params: { viewType: viewType.value }
+        })
+        revenueStats.value = response.data
+    } catch (error) {
+        console.error('Error loading revenue stats:', error)
+    }
+}
 
 const chartData = computed(() => {
-    const labels = viewType.value === 'Yearly'
-        ? ['2019', '2020', '2021', '2022', '2023']
-        : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-
-    const sales = viewType.value === 'Yearly' ? yearlySales : monthlySales
-    const revenue = viewType.value === 'Yearly' ? yearlyRevenue : monthlyRevenue
+    const labels = revenueStats.value.map(data => data.label)
+    const sales = revenueStats.value.map(data => data.sales)
+    const revenue = revenueStats.value.map(data => data.revenue)
 
     return {
         labels,
@@ -126,7 +132,8 @@ const chartOptions = {
     }
 }
 
-onMounted(() => {
+onMounted(async () => {
+    await loadRevenueStats()
     if (!chartRef.value) return
     chartInstance = new Chart(chartRef.value.getContext('2d')!, {
         type: 'line',
@@ -139,6 +146,9 @@ watch(chartData, (newData) => {
     if (!chartInstance) return
     chartInstance.data = newData as any
     chartInstance.update()
+})
+watch(viewType, async () => {
+    await loadRevenueStats()
 })
 
 onBeforeUnmount(() => {
