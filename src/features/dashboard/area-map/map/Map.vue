@@ -106,7 +106,7 @@
     chart = echarts.init(chartRef.value)
     chart.showLoading()
   
-    const { data: worldJson } = await axios.get('/assets/map/world.json')
+    const { data: worldJson } = await axios.get('/map/world.json')
     echarts.registerMap('world', worldJson)
   
     initChart()
