@@ -10,10 +10,13 @@
         </div>
 
         <section class="layout__content__chart-revenue-sales-data">
-            <RevenueAnalytics />
+            <RevenueAnalytics class="layout__content__chart-revenue-sales-data__revenue-analytics" />
+            <SalesData class="layout__content__chart-revenue-sales-data__sales-data" />
         </section>
         <div class="layout__content__recent-transactions-top-properties">
-
+            <Map class="layout__content__recent-transactions-top-properties__map" />
+            <RecentTransaction class="layout__content__recent-transactions-top-properties__recent-transaction" />
+            <TopProperties class="layout__content__recent-transactions-top-properties__top-properties" />
         </div>
     </div>
     <Footer />
@@ -26,6 +29,11 @@ import Sidebar from '../layout/nav-bar/side-bar/side-bar-component.vue'
 import { useSidebarService } from '../../../composables/use-side-bar'
 import CardComponent from '../card/card-component.vue'
 import RevenueAnalytics from '../revenue-analytics/revenue-analytics-component.vue'
+import SalesData from '../sales-data/sales-data.vue'
+import Map from '../area-map/AreaMap.vue'
+import RecentTransaction from '../recent-transactions/recent-transaction.vue'
+import TopProperties from '../top-properties/top-properties.vue'
+
 const { open } = useSidebarService()
 
 const cards = [
