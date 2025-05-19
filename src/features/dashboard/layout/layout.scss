@@ -1,0 +1,45 @@
+.layout__content {
+  transition: margin-left 0.3s ease;
+  margin-left: 0;
+  margin-top: 52px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: #e0e0e01f;
+
+  &__title {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+    color: #111827;
+  }
+
+  &__subtitle {
+    margin: 0;
+    font-size: 16px;
+    color: #6b7280;
+  }
+
+  &--shifted {
+    margin-left: 300px;
+  }
+
+  &__cards {
+    display: grid;
+    gap: 24px;
+    width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    margin-bottom: 20px;
+
+    & > * {
+      min-width: 0;
+    }
+  }
+
+  @media (max-width: 768px) {
+    &--shifted {
+      margin-left: 0;
+    }
+  }
+}

@@ -8,5 +8,5 @@
     </footer>
 </template>
 
-<style src="./Footer.scss" scoped></style>
+<style src="./footer.scss" scoped></style>
 
