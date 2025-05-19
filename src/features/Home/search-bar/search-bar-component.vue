@@ -38,7 +38,7 @@
 
 <script lang="ts" setup>
 import { ref } from "vue";
-import AppSelect from "@/shared/select-component.vue";
+import AppSelect from "@/shared/select/select-component.vue";
 
 const emit = defineEmits<{
   (e: 'tabChange', tab: string): void;
@@ -52,7 +52,7 @@ const emit = defineEmits<{
   }): void;
 }>();
 
-const departamentos = ["Todos", "Casa", "Apartamento", "Oficina", "Local", "Terreno"];
+const departamentos = ["Todos", "Casa", "Apartamento", "Oficina", "Local"];
 const ambientes = ["Todos", "1", "2", "3", "4", "5+"];
 const precios: Record<string, { minPrice?: number; maxPrice?: number }> = {
   "Todos": {},
