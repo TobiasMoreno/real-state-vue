@@ -8,8 +8,8 @@
                 </option>
             </select>
         </div>
-
-        <ul class="sales-data__list">
+        <div v-if="isLoading" class="sales-data__loading">Cargando datos de ventas...</div>
+        <ul v-else class="sales-data__list">
             <li v-for="item in salesData" :key="item.label" class="sales-data__item">
                 <div class="sales-data__item-top">
                     <div class="sales-data__label">{{ item.label }}</div>
@@ -33,6 +33,8 @@ enum Period {
     Weekly = 'Weekly',
     Yearly = 'Yearly'
 }
+
+const isLoading = ref(false);
 const periods = Object.values(Period)
 
 const selectedPeriod = ref<Period>(Period.Monthly)
@@ -40,12 +42,15 @@ const selectedPeriod = ref<Period>(Period.Monthly)
 const salesData = ref<SaleItem[]>([])
 
 async function loadSalesData(): Promise<SaleItem[]> {
+    isLoading.value = true
     try {
         const response = await api.get<SaleItem[]>(`/sales/${selectedPeriod.value.toLowerCase()}`)
         return response.data
     } catch (error) {
         console.error('Error loading sales data:', error)
         return []
+    } finally {
+        isLoading.value = false
     }
 }
 

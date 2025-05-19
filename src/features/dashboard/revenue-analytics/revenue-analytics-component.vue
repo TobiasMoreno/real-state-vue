@@ -7,8 +7,10 @@
                 <option value="Yearly">Yearly</option>
             </select>
         </div>
-
-        <div class="revenue-analytics__body">
+        <div v-if="isLoading" class="revenue-analytics__loading">
+            Cargando datos del gráfico…
+        </div>
+        <div v-show="!isLoading" class="revenue-analytics__body">
             <canvas ref="chartRef" class="revenue-analytics__chart" height="360"></canvas>
         </div>
     </div>
@@ -28,8 +30,10 @@ let chartInstance: Chart | null = null
 
 const viewType = ref<'Monthly' | 'Yearly'>('Monthly')
 const revenueStats = ref<RevenueStats[]>([])
+const isLoading = ref(false)
 
 async function loadRevenueStats() {
+    isLoading.value = true
     try {
         const response = await api.get<RevenueStats[]>(`/revenues`, {
             params: { viewType: viewType.value }
@@ -37,6 +41,8 @@ async function loadRevenueStats() {
         revenueStats.value = response.data
     } catch (error) {
         console.error('Error loading revenue stats:', error)
+    } finally {
+        isLoading.value = false
     }
 }
 
