@@ -1,7 +1,7 @@
 export interface TopProperty {
   id: number;
-  title: string;
+  buildingName: string;
   imageUrl: string;
-  change: number;
-  location: string;
+  pctChange: number;
+  direction: string;
 }

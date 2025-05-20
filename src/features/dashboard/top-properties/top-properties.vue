@@ -7,20 +7,24 @@
                 <span class="top-properties__icon">→</span>
             </a>
         </div>
-        <ul class="top-properties__list">
+        <div class="error-message" v-if="error">
+            {{ error }}
+        </div>
+        <div class="loading" v-if="isLoading">Cargando propiedades...</div>
+        <ul v-show="!isLoading" class="top-properties__list">
             <li v-for="property in properties" :key="property.id" class="top-properties__item">
-                <img :src="property.imageUrl" :alt="property.title" class="top-properties__avatar" />
+                <img :src="property.imageUrl" :alt="property.buildingName" class="top-properties__avatar" />
                 <div class="top-properties__info">
-                    <span class="top-properties__name">{{ property.title }}</span>
-                    <span class="top-properties__location">{{ property.location }}</span>
+                    <span class="top-properties__name">{{ property.buildingName }}</span>
+                    <span class="top-properties__location">{{ property.direction }}</span>
                 </div>
                 <span :class="[
                     'top-properties__change',
-                    property.change > 0
+                    property.pctChange > 0
                         ? 'top-properties__change--up'
                         : 'top-properties__change--down'
                 ]">
-                    {{ (property.change > 0 ? '↑' : '↓') + Math.abs(property.change) + '%' }}
+                    {{ (property.pctChange > 0 ? '↑' : '↓') + Math.abs(property.pctChange) + '%' }}
                 </span>
             </li>
         </ul>
@@ -28,18 +32,31 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { TopProperty } from './top-property';
+import { api } from '@/plugins/axios';
 
-const properties = ref<TopProperty[]>([
-    { id: 1, title: 'House', imageUrl: 'dashboard/house-1.jpg', change: -11, location: 'Baton Rouge, USA' },
-    { id: 2, title: 'House', imageUrl: 'dashboard/house-2.jpg', change: 20, location: 'Baton Rouge, USA' },
-    { id: 3, title: 'House', imageUrl: 'dashboard/house-3.jpg', change: 24, location: 'Baton Rouge, USA' },
-    { id: 4, title: 'House', imageUrl: 'dashboard/house-4.jpg', change: 21, location: 'Baton Rouge, USA' },
-    { id: 5, title: 'House', imageUrl: 'dashboard/house-5.jpg', change: 45, location: 'Baton Rouge, USA' },
-    { id: 6, title: 'House', imageUrl: 'dashboard/house-5.jpg', change: -45, location: 'Baton Rouge, USA' },
-    { id: 7, title: 'House', imageUrl: 'dashboard/house-5.jpg', change: 45, location: 'Baton Rouge, USA' }
-])
+const properties = ref<TopProperty[]>([])
+const isLoading = ref(false)
+const error = ref<string | null>(null)
+
+const fetchProperties = async () => {
+    isLoading.value = true
+    error.value = null
+    try {
+        const { data } = await api.get<TopProperty[]>('/buildings/overview')
+        properties.value = data
+    } catch{
+        error.value = 'No se pudieron cargar las propiedades.'
+    } finally {
+        isLoading.value = false
+    }
+}
+
+onMounted(() => {
+    fetchProperties()
+})
+
 </script>
 
 <style scoped src="./top-properties.scss" />
