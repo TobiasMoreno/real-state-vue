@@ -30,7 +30,7 @@ import { ref, onMounted } from 'vue'
 import axios from 'axios'
 import { useSidebarService } from '../../../../../composables/use-side-bar'
 
-import { MenuItem } from './models/menu-item'
+import type { MenuItem } from './models/menu-item'
 import { RouterLink } from 'vue-router'
 const menuItems = ref<MenuItem[]>([])
 

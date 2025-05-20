@@ -21,7 +21,7 @@
 import { ref, computed, watch, onMounted, onBeforeUnmount } from 'vue'
 import Chart from 'chart.js/auto'
 import crosshairPlugin from 'chartjs-plugin-crosshair'
-import { RevenueStats } from './revenue-stats'
+import type { RevenueStats } from './revenue-stats'
 import { api } from '@/plugins/axios'
 
 Chart.register(crosshairPlugin)

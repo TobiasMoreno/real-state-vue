@@ -11,49 +11,75 @@
           <h3>Inicio</h3>
           <ul>
             <li><a href="#" @click.prevent="scrollToAnchor('home')">Inicio</a></li>
-            <li><RouterLink to="/servicios">Servicios</RouterLink></li>
-            <li><RouterLink to="/registrarse">Registrarse</RouterLink></li>
-            <li><RouterLink to="/nosotros">Nosotros</RouterLink></li>
+            <li>
+              <RouterLink to="/servicios">Servicios</RouterLink>
+            </li>
+            <li>
+              <RouterLink to="/registrarse">Registrarse</RouterLink>
+            </li>
+            <li>
+              <RouterLink to="/nosotros">Nosotros</RouterLink>
+            </li>
           </ul>
         </div>
 
         <div class="footer__section">
           <h3>Secciones</h3>
           <ul>
-            <li><RouterLink to="/alquilar">Alquilar</RouterLink></li>
-            <li><RouterLink to="/comprar">Comprar</RouterLink></li>
-            <li><RouterLink to="/inversiones">Inversiones</RouterLink></li>
+            <li>
+              <RouterLink to="/alquilar">Alquilar</RouterLink>
+            </li>
+            <li>
+              <RouterLink to="/comprar">Comprar</RouterLink>
+            </li>
+            <li>
+              <RouterLink to="/inversiones">Inversiones</RouterLink>
+            </li>
           </ul>
         </div>
 
         <div class="footer__section">
           <h3>Propiedades</h3>
           <ul>
-            <li><RouterLink to="/departamentos">Departamentos</RouterLink></li>
-            <li><RouterLink to="/casas">Casas</RouterLink></li>
-            <li><RouterLink to="/terrenos">Terrenos</RouterLink></li>
+            <li>
+              <RouterLink to="/departamentos">Departamentos</RouterLink>
+            </li>
+            <li>
+              <RouterLink to="/casas">Casas</RouterLink>
+            </li>
+            <li>
+              <RouterLink to="/terrenos">Terrenos</RouterLink>
+            </li>
           </ul>
         </div>
 
         <div class="footer__section">
           <h3>Contacto</h3>
           <ul>
-            <li><RouterLink to="/informacion">Información</RouterLink></li>
-            <li><RouterLink to="/ayuda">Ayuda</RouterLink></li>
-            <li><RouterLink to="/mail">Mail</RouterLink></li>
+            <li>
+              <RouterLink to="/informacion">Información</RouterLink>
+            </li>
+            <li>
+              <RouterLink to="/ayuda">Ayuda</RouterLink>
+            </li>
+            <li>
+              <RouterLink to="/mail">Mail</RouterLink>
+            </li>
           </ul>
         </div>
 
         <div class="footer__section">
           <h3>Seguinos</h3>
           <div class="footer__social">
-            <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <a href="https://www.instagram.com/tobias_moreno1/" target="_blank" rel="noopener noreferrer"
+              aria-label="Instagram">
               <i class="fab fa-instagram"></i>
             </a>
-            <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-              <i class="fab fa-facebook-f"></i>
+            <a href="https://github.com/TobiasMoreno" target="_blank" rel="noopener noreferrer" aria-label="Github">
+              <i class="fab fa-github"></i>
             </a>
-            <a href="#" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <a href="https://www.linkedin.com/in/tobiasmoreno/" target="_blank" rel="noopener noreferrer"
+              aria-label="LinkedIn">
               <i class="fab fa-linkedin-in"></i>
             </a>
           </div>
@@ -79,7 +105,6 @@ function scrollToAnchor(anchor) {
 </script>
 
 <style lang="scss">
-
 .footer {
   position: relative;
   padding-top: 73px;
@@ -206,6 +231,7 @@ function scrollToAnchor(anchor) {
       h3 {
         font-size: 18px;
       }
+
       ul li {
         margin-bottom: 8px;
       }

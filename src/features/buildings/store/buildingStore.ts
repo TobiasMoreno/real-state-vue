@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { api } from '@/plugins/axios'
-import { Building } from '@/features/buildings/type/building'
+import type { Building } from '../type/building'
 
 export const useBuildingStore = defineStore('building', {
   state: () => ({
