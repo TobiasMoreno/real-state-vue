@@ -46,7 +46,7 @@ async function getTransactions() {
 
 function formatDate(dateStr: string): string {
     const date = new Date(dateStr)
-    const day = date.getDate()
+    const day = date.getUTCDate()
     const daySuffix = (n: number) => {
         if (n >= 11 && n <= 13) return 'th'
         switch (n % 10) {
@@ -57,8 +57,8 @@ function formatDate(dateStr: string): string {
         }
     }
 
-    const month = date.toLocaleString('en-US', { month: 'short' })
-    const year = date.getFullYear()
+    const month = date.toLocaleString('en-US', { month: 'short', timeZone: 'UTC' })
+    const year = date.getUTCFullYear()
     return `${day}${daySuffix(day)} ${month} ${year}`
 }
 
