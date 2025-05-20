@@ -68,8 +68,6 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
-
 const currentYear = new Date().getFullYear()
 
 function scrollToAnchor(anchor) {
@@ -80,4 +78,4 @@ function scrollToAnchor(anchor) {
 }
 </script>
 
-<style scoped src="./footer.scss"></style>
+<style lang="scss" src="./footer.scss" scoped></style>
