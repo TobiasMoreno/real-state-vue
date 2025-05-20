@@ -4,7 +4,7 @@
             <ul class="sidebar__list">
                 <li v-for="item in menuItems" :key="item.id" class="sidebar__item">
                     <RouterLink :to="item.path" class="sidebar__link" active-class="sidebar__link--selected"
-                        @click.native="onMenuClick">
+                        @click="onMenuClick">
                         <i :class="['sidebar__link__icon', item.icon]"></i>
                         <span class="sidebar__link__text">{{ item.name }}</span>
                     </RouterLink>

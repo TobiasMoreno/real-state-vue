@@ -10,9 +10,9 @@
   </div>
 </template>
 
-<script setup>
-import { ref, computed, watchEffect } from "vue";
-import CardComponent from "../card/card-component.vue";
+<script setup lang="ts">
+import { ref, computed, watchEffect } from 'vue'
+import CardComponent from '../card/card-component.vue'
 const props = defineProps({
   buildings: {
     type: Array,
@@ -25,12 +25,11 @@ const props = defineProps({
 const currentPage = ref(0);
 const itemsPerPage = ref(4);
 const carouselRef = ref(null);
-const resizeObserver = ref(null);
 
 const filterBuildings = (buildings) => {
-  let filtered = props.activeTab === "rent"
+  const filtered = props.activeTab === 'rent'
     ? buildings.filter(b => !b.sale)
-    : buildings.filter(b => b.sale);
+    : buildings.filter(b => b.sale)
 
   return props.filterType === "department"
     ? filtered.filter(b => b.beds !== null && b.bathrooms !== null)
@@ -50,28 +49,6 @@ const visibleBuildings = computed(() => {
   return buildings.value.slice(start, start + itemsPerPage.value);
 });
 
-const updateItemsPerPage = (width) => {
-  if (width <= 600) itemsPerPage.value = 1;
-  else if (width <= 900) itemsPerPage.value = 2;
-  else if (width <= 1200) itemsPerPage.value = 3;
-  else itemsPerPage.value = 4;
-
-  const maxPage = Math.ceil(buildings.value.length / itemsPerPage.value) - 1;
-  if (currentPage.value > maxPage) {
-    currentPage.value = maxPage;
-  }
-};
-
-const setupResizeObserver = () => {
-  if (carouselRef.value) {
-    resizeObserver.value = new ResizeObserver((entries) => {
-      for (const entry of entries) {
-        updateItemsPerPage(entry.contentRect.width);
-      }
-    });
-    resizeObserver.value.observe(carouselRef.value);
-  }
-};
 
 const goToPage = (index) => {
   if (index >= 0 && index < totalPages.value.length) {

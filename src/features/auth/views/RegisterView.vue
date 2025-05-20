@@ -61,7 +61,7 @@ async function onSubmit() {
     try {
         await auth.register(email.value, password.value);
         emit('success');
-    } catch (error: any) {
+    } catch (error) {
         errorMessage.value = error.message || 'Hubo un problema al crear tu cuenta. Intenta nuevamente.';
     }
 }
@@ -71,7 +71,7 @@ async function onGoogleLogin() {
     try {
         await auth.loginWithGoogle();
         emit('success');
-    } catch (error) {
+    } catch {
         errorMessage.value = 'Hubo un problema al iniciar sesión con Google. Intenta nuevamente.';
     }
 }

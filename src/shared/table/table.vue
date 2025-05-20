@@ -36,18 +36,22 @@
 </template>
 
 <script setup lang="ts">
+defineOptions({
+    name: 'DataTable'
+})
 
 type TableColumn = { key: string; label: string }
+type TableRow = Record<string, string | number>
 
 const props = defineProps<{
     columns: TableColumn[],
-    data: Record<string, any>[],
+    data: TableRow[],
     idKey?: string
 }>()
 
 const idKey = props.idKey || 'id'
 
-const isImageUrl = (value: any): boolean =>
+const isImageUrl = (value: string | number): boolean =>
     typeof value === 'string' && /\.(jpe?g|png|gif|svg)$/i.test(value)
 
 const formatCurrency = (value: number) => {
@@ -59,6 +63,6 @@ const formatCurrency = (value: number) => {
     }).format(value)
 }
 
-const rowIndex = (row: any) => JSON.stringify(row)
+const rowIndex = (row: TableRow) => JSON.stringify(row)
 </script>
 <style lang="scss" scoped src="./table.scss" />

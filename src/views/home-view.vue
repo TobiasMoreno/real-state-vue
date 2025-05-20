@@ -16,7 +16,7 @@
   <FooterComponent />
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted, computed } from "vue";
 import { useBuildingStore } from "@/features/buildings/store/buildingStore";
 import BenefitsSectionComponent from "@/features/Home/Benefits/benefits-section-component.vue";

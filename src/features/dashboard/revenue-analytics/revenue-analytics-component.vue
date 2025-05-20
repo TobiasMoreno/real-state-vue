@@ -34,7 +34,7 @@ const revenueStats = ref<RevenueStats[]>([])
 const isLoading = ref(false)
 const error = ref<string | null>(null)
 
-async function loadRevenueStats(): Promise<void>	 {
+async function loadRevenueStats(): Promise<void> {
     isLoading.value = true
     error.value = null
     try {
@@ -73,7 +73,7 @@ const chartData = computed(() => {
                 label: 'Revenue',
                 data: revenue,
                 borderColor: '#10B981',
-                backgroundColor: (ctx: any) => {
+                backgroundColor: (ctx) => {
                     const chart = ctx.chart
                     const { ctx: c, chartArea } = chart
                     if (!chartArea) return 'rgba(16,185,129,0.1)'
@@ -123,7 +123,7 @@ const chartOptions = {
         tooltip: {
             enabled: true,
             callbacks: {
-                label: (ctx: any) => `${ctx.dataset.label}: ${ctx.parsed.y}`
+                label: (ctx) => `${ctx.dataset.label}: ${ctx.parsed.y}`
             }
         },
         title: {
@@ -147,13 +147,13 @@ onMounted(async () => {
     chartInstance = new Chart(chartRef.value.getContext('2d')!, {
         type: 'line',
         data: chartData.value,
-        options: chartOptions as any
+        options: chartOptions
     })
 })
 
 watch(chartData, (newData) => {
     if (!chartInstance) return
-    chartInstance.data = newData as any
+    chartInstance.data = newData
     chartInstance.update()
 })
 watch(viewType, async () => {
