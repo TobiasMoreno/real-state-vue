@@ -7,8 +7,12 @@
                 <span class="btn-link__icon">→</span>
             </a>
         </div>
-        <div class="recent-transactions__loading" v-if="isLoading">Cargando transacciones...</div>
-        <Table v-show="!isLoading" :columns="columns" :data="transactions" id-key="id" />
+        <div class="error-message" v-if="error">
+            {{ error }}
+        </div>
+        <div class="loading" v-if="isLoading">Cargando transacciones...</div>
+
+        <Table v-if="!error" v-show="!isLoading" :columns="columns" :data="transactions" id-key="id" />
     </div>
 </template>
 
@@ -21,16 +25,23 @@ import { api } from '@/plugins/axios'
 
 const transactions = ref<ResponseTransactionDto[]>([])
 const isLoading = ref(false)
+const error = ref<string | null>(null)
 
 async function getTransactions() {
     isLoading.value = true
-    const response = await api.get<ResponseTransactionDto[]>('transactions')
-    transactions.value = response.data.map(transaction => ({
+    error.value = null
+    try {
+        const response = await api.get<ResponseTransactionDto[]>('transactions')
+        transactions.value = response.data.map(transaction => ({
         ...transaction,
         date: formatDate(transaction.date),
         price: formatPrice(Number(transaction.price))
     }))
-    isLoading.value = false
+    } catch {
+        error.value = 'No se pudieron cargar las transacciones.'
+    } finally {
+        isLoading.value = false
+    }
 }
 
 function formatDate(dateStr: string): string {

@@ -1,3 +1,4 @@
+@use "../../../views/home-view.scss";
 .revenue-analytics {
   background: #fff;
   border-radius: 8px;
@@ -30,30 +31,5 @@
   &__body {
     display: flex;
     flex-direction: column;
-  }
-}
-.revenue-analytics__loading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 200px;
-  font-size: 1.2rem;
-  color: var(--color-primary);
-
-  &::before {
-    content: "";
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
-    border: 3px solid var(--color-primary);
-    border-top-color: transparent;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-  }
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
   }
 }
